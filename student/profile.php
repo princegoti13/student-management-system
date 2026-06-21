@@ -37,6 +37,11 @@ Welcome,
 <b><?php echo $user['name']; ?></b>
 </p>
 
+<a href="edit_profile.php"
+   class="btn btn-warning mb-3">
+Edit Profile
+</a>
+
 <a href="../logout.php"
    class="btn btn-danger mb-3">
 Logout
@@ -57,6 +62,31 @@ Logout
 <tr>
 <th>Role</th>
 <td><?php echo $user['role']; ?></td>
+</tr>
+
+<tr>
+<th>Mobile</th>
+<td><?php echo $user['mobile']; ?></td>
+</tr>
+
+<tr>
+<th>Gender</th>
+<td><?php echo $user['gender']; ?></td>
+</tr>
+
+<tr>
+<th>Course</th>
+<td><?php echo $user['course']; ?></td>
+</tr>
+
+<tr>
+<th>Semester</th>
+<td><?php echo $user['semester']; ?></td>
+</tr>
+
+<tr>
+<th>Address</th>
+<td><?php echo $user['address']; ?></td>
 </tr>
 
 </table>
