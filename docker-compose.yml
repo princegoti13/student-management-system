@@ -1,0 +1,14 @@
+services:
+
+  php-app:
+    build: .
+    ports:
+      - "9090:80"
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: studentdb
