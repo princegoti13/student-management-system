@@ -51,6 +51,7 @@ while($row = mysqli_fetch_assoc($result))
     echo "ID: ".$row['id'];
     echo " | Name: ".$row['name'];
     echo " | Email: ".$row['email'];
+    echo " | <a href='edit.php?id=".$row['id']."'>Edit</a>";
     echo " | <a href='delete.php?id=".$row['id']."'>Delete</a>";
     echo "<br><br>";
 }
