@@ -33,38 +33,27 @@ $user = mysqli_fetch_assoc($query);
 
         <h1>Student Profile</h1>
 
-        <!-- <?php
+        <?php
 
-                $photoPath = "../uploads/default-user.png";
+        $photoPath = "../uploads/default-user.png";
 
-                if (
-                    !empty($user['photo']) &&
-                    file_exists(__DIR__ . "/../uploads/" . $user['photo'])
-                ) {
-                    $photoPath = "../uploads/" . $user['photo'];
-                }
-                ?>
+        if (
+            !empty($user['photo']) &&
+            file_exists(__DIR__ . "/../uploads/" . $user['photo'])
+        ) {
+            $photoPath = "../uploads/" . $user['photo'];
+        }
+        ?>
 
         <div class="mb-3 text-center">
             <img src="<?php echo $photoPath; ?>"
-                width="220"
-                height="220"
-                class="rounded-circle"
-                style="object-fit:cover;border:4px solid #ccc;">
-        </div> -->
-
-        <?php
-        if (!empty($user['photo'])) {
-        ?>
-
-            <img src="../uploads/<?php echo $user['photo']; ?>"
                 width="150"
                 height="150"
-                class="rounded-circle mb-3">
+                class="rounded-circle"
+                style="object-fit:cover;border:4px solid #ccc;">
+        </div>
 
-        <?php
-        }
-        ?>
+
 
         <p>
             Welcome,
