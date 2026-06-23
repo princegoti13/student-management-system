@@ -33,14 +33,23 @@ $user = mysqli_fetch_assoc($query);
 
         <h1>Student Profile</h1>
 
-        <?php
+        <!-- <?php
 
-        $photoPath = "../uploads/default-user.png";
+                $photoPath = "../uploads/default-user.png";
 
-        if (!empty($user['photo'])) {
-            $photoPath = "../uploads/" . $user['photo'];
-        }
-        ?>
+                if (!empty($user['photo'])) {
+                    $photoPath = "../uploads/" . $user['photo'];
+                }
+                ?> -->
+
+        <h5>Photo From DB:</h5>
+
+        <?php echo $user['photo']; ?>
+
+        <br><br>
+
+        <img src="../uploads/<?php echo $user['photo']; ?>"
+            width="200">
 
         <img src="<?php echo $photoPath; ?>"
             width="180"
