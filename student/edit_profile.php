@@ -42,27 +42,10 @@ if (isset($_POST['update'])) {
             mkdir($uploadDir, 0777, true);
         }
 
-        echo "<pre>";
-        print_r($_FILES);
-        echo "</pre>";
-
-        echo "TMP FILE: ";
-        var_dump(file_exists($_FILES['photo']['tmp_name']));
-
-        echo "<br>UPLOAD DIR: ";
-        var_dump(is_dir($uploadDir));
-
-        echo "<br>WRITABLE: ";
-        var_dump(is_writable($uploadDir));
-
-        echo "<br>DESTINATION: ";
-        echo $uploadDir . $photoName;
-
-        var_dump(move_uploaded_file(
+        move_uploaded_file(
             $_FILES['photo']['tmp_name'],
             $uploadDir . $photoName
-        ));
-        exit;
+        );
     }
 
     $sql = "UPDATE users SET
