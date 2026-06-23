@@ -24,16 +24,17 @@ if(isset($_POST['login']))
         $_SESSION['name'] = $user['name'];
         $_SESSION['role'] = $user['role'];
 
-        if($user['role'] == 'admin')
-        {
-            header("Location: admin/dashboard.php");
-            exit();
-        }
-        else
-        {
-            header("Location: student/profile.php");
-            exit();
-        }
+        $message = "Login Successful";
+        $messageType = "success";
+
+if($user['role'] == 'admin')
+{
+    $redirectPage = "admin/dashboard.php";
+}
+else
+{
+    $redirectPage = "student/profile.php";
+}
     }
     else
     {
@@ -66,7 +67,7 @@ if(isset($_POST['login']))
                 <?php
                 if($message != "")
                 {
-                    echo "<div class='alert alert-danger'>$message</div>";
+                    echo "<div class='alert alert-$messageType'>$message</div>";
                 }
                 ?>
 
@@ -111,6 +112,24 @@ if(isset($_POST['login']))
     </div>
 
 </div>
+
+<script>
+
+<?php
+if(isset($redirectPage))
+{
+?>
+
+setTimeout(function()
+{
+    window.location.href = "<?php echo $redirectPage; ?>";
+}, 3000);
+
+<?php
+}
+?>
+
+</script>
 
 </body>
 </html>
