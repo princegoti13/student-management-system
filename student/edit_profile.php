@@ -42,10 +42,16 @@ if (isset($_POST['update'])) {
             mkdir($uploadDir, 0777, true);
         }
 
-        move_uploaded_file(
-            $_FILES['photo']['tmp_name'],
-            $uploadDir . $photoName
-        );
+        if (
+            move_uploaded_file(
+                $_FILES['photo']['tmp_name'],
+                $uploadDir . $photoName
+            )
+        ) {
+            die("UPLOAD SUCCESS");
+        } else {
+            die("UPLOAD FAILED");
+        }
     }
 
     $sql = "UPDATE users SET
