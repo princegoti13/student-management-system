@@ -66,6 +66,11 @@ $user = mysqli_fetch_assoc($query);
             Edit Profile
         </a>
 
+        <a href="change_password.php"
+            class="btn btn-secondary mb-3">
+            Change Password
+        </a>
+
         <a href="../logout.php"
             class="btn btn-danger mb-3">
             Logout
