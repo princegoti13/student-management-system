@@ -41,9 +41,15 @@ if (isset($_POST['update'])) {
     if (!empty($_FILES['photo']['name'])) {
         $photoName = time() . "_" . $_FILES['photo']['name'];
 
+        $uploadDir = __DIR__ . "/../uploads/";
+
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
         move_uploaded_file(
             $_FILES['photo']['tmp_name'],
-            "../uploads/" . $photoName
+            $uploadDir . $photoName
         );
     }
 }
