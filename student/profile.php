@@ -37,22 +37,21 @@ $user = mysqli_fetch_assoc($query);
 
         $photoPath = "../uploads/default-user.png";
 
-        if (!empty($user['photo'])) {
+        if (
+            !empty($user['photo']) &&
+            file_exists(__DIR__ . "/../uploads/" . $user['photo'])
+        ) {
             $photoPath = "../uploads/" . $user['photo'];
         }
         ?>
 
-        <br><br>
-
-        <img src="../uploads/<?php echo $user['photo']; ?>"
-            width="200">
-
-        <img src="<?php echo $photoPath; ?>"
-            width="180"
-            height="180"
-            class="rounded-circle"
-            style="object-fit:cover;border:3px solid #ccc;">
-
+        <div class="mb-3 text-center">
+            <img src="<?php echo $photoPath; ?>"
+                width="220"
+                height="220"
+                class="rounded-circle"
+                style="object-fit:cover;border:4px solid #ccc;">
+        </div>
         <p>
             Welcome,
             <b><?php echo $user['name']; ?></b>
