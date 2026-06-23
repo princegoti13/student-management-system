@@ -1,4 +1,6 @@
 <?php
+error_reporting(0);
+ini_set('display_errors', 0);
 session_start();
 require_once __DIR__ . '/../db.php';
 
@@ -36,11 +38,6 @@ if (isset($_POST['update'])) {
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
-
-        move_uploaded_file(
-            $_FILES['photo']['tmp_name'],
-            $uploadDir . $photoName
-        );
     }
 
     $sql = "UPDATE users SET
