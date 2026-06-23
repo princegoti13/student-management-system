@@ -37,11 +37,10 @@ $user = mysqli_fetch_assoc($query);
         if (!empty($user['photo'])) {
         ?>
             <div class="mb-3">
-                <img src="/uploads/<?php echo $user['photo']; ?>"
-                    alt="Profile Photo"
+                <img src="http://13.201.60.178:9090/uploads/<?php echo $user['photo']; ?>"
                     width="180"
                     height="180"
-                    style="border-radius:50%;object-fit:cover;border:3px solid #ccc;">
+                    style="border-radius:50%;object-fit:cover;">
             </div>
         <?php
         }
