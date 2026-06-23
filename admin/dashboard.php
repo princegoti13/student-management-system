@@ -196,32 +196,35 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
             </tr>
 
             <?php
-
             while ($row = mysqli_fetch_assoc($result)) {
-            ?>
 
+                $photoPath = "/uploads/default-user.png";
+
+                if (
+                    !empty($row['photo']) &&
+                    file_exists(__DIR__ . "/../uploads/" . $row['photo'])
+                ) {
+                    $photoPath = "/uploads/" . $row['photo'];
+                }
+            ?>
                 <tr>
+
                     <td>
                         <img src="<?php echo $photoPath; ?>"
                             width="60"
                             height="60"
-                            class="rounded-circle">
+                            class="rounded-circle"
+                            style="object-fit:cover;">
                     </td>
 
                     <td><?php echo $row['id']; ?></td>
-
                     <td><?php echo $row['name']; ?></td>
-
                     <td><?php echo $row['email']; ?></td>
-
                     <td><?php echo $row['mobile']; ?></td>
-
                     <td><?php echo $row['course']; ?></td>
-
                     <td><?php echo $row['semester']; ?></td>
 
                     <td>
-
                         <a href="edit_student.php?id=<?php echo $row['id']; ?>"
                             class="btn btn-warning btn-sm">
                             Edit
@@ -232,11 +235,9 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                             onclick="return confirm('Delete Student?')">
                             Delete
                         </a>
-
                     </td>
 
                 </tr>
-
             <?php
             }
             ?>
