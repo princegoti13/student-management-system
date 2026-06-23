@@ -9,6 +9,11 @@ if(isset($_POST['register']))
     $name = mysqli_real_escape_string($conn,$_POST['name']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $password = MD5($_POST['password']);
+    $mobile = mysqli_real_escape_string($conn,$_POST['mobile']);
+    $gender = mysqli_real_escape_string($conn,$_POST['gender']);
+    $course = mysqli_real_escape_string($conn,$_POST['course']);
+    $semester = mysqli_real_escape_string($conn,$_POST['semester']);
+    $address = mysqli_real_escape_string($conn,$_POST['address']);
 
     if(
     !filter_var($email,FILTER_VALIDATE_EMAIL)
@@ -35,17 +40,32 @@ if(isset($_POST['register']))
         else
         {
             $insert = mysqli_query(
-                $conn,
-                "INSERT INTO users
-                (name,email,password,role)
-                VALUES
-                (
-                '$name',
-                '$email',
-                '$password',
-                'student'
-                )"
-            );
+    $conn,
+    "INSERT INTO users
+    (
+        name,
+        email,
+        password,
+        role,
+        mobile,
+        gender,
+        course,
+        semester,
+        address
+    )
+    VALUES
+    (
+        '$name',
+        '$email',
+        '$password',
+        'student',
+        '$mobile',
+        '$gender',
+        '$course',
+        '$semester',
+        '$address'
+    )"
+);
 
             if($insert)
             {
@@ -111,6 +131,57 @@ if(isset($_POST['register']))
                                 title="Enter Valid Email Address"
                                required>
                     </div>
+                    <div class="mb-3">
+    <label>Mobile Number</label>
+
+    <input type="text"
+           name="mobile"
+           class="form-control"
+           required>
+</div>
+
+<div class="mb-3">
+    <label>Gender</label>
+
+    <select name="gender"
+            class="form-control"
+            required>
+
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+
+    </select>
+</div>
+
+<div class="mb-3">
+    <label>Course</label>
+
+    <input type="text"
+           name="course"
+           class="form-control"
+           placeholder="BCA"
+           required>
+</div>
+
+<div class="mb-3">
+    <label>Semester</label>
+
+    <input type="text"
+           name="semester"
+           class="form-control"
+           placeholder="SEM-4"
+           required>
+</div>
+
+<div class="mb-3">
+    <label>Address</label>
+
+    <textarea name="address"
+              class="form-control"
+              rows="3"
+              required></textarea>
+</div>
 
                     <div class="mb-3">
                         <label>Password</label>
