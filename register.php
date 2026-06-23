@@ -155,21 +155,44 @@ if (isset($_POST['register'])) {
                         <div class="mb-3">
                             <label>Course</label>
 
-                            <input type="text"
-                                name="course"
-                                class="form-control"
-                                placeholder="BCA"
-                                required>
+                            <select name="course" class="form-control" required>
+
+                                <option value="">Select Course</option>
+
+                                <option value="BCA">BCA</option>
+
+                                <option value="BBA">BBA</option>
+
+                                <option value="BCom">BCom</option>
+
+                                <option value="BA">BA</option>
+
+                                <option value="BSc">BSc</option>
+
+                                <option value="BTech">BTech</option>
+
+                            </select>
                         </div>
 
                         <div class="mb-3">
                             <label>Semester</label>
 
-                            <input type="text"
-                                name="semester"
-                                class="form-control"
-                                placeholder="SEM-4"
-                                required>
+                            <div class="mb-3">
+                                <label>Semester</label>
+
+                                <select name="semester" class="form-control" required>
+
+                                    <option value="">Select Semester</option>
+
+                                    <option value="1">Semester 1</option>
+                                    <option value="2">Semester 2</option>
+                                    <option value="3">Semester 3</option>
+                                    <option value="4">Semester 4</option>
+                                    <option value="5">Semester 5</option>
+                                    <option value="6">Semester 6</option>
+
+                                </select>
+                            </div>
                         </div>
 
                         <div class="mb-3">
