@@ -158,18 +158,17 @@ if (isset($_POST['register'])) {
                             <select name="course" class="form-control" required>
 
                                 <option value="">Select Course</option>
-
+                                
                                 <option value="BCA">BCA</option>
-
                                 <option value="BBA">BBA</option>
-
                                 <option value="BCom">BCom</option>
-
                                 <option value="BA">BA</option>
-
                                 <option value="BSc">BSc</option>
-
                                 <option value="BTech">BTech</option>
+                                <option value="BEd">BEd</option>
+                                <option value="BPharm">BPharm</option>
+                                <option value="BHM">BHM</option>
+                                <option value="BSW">BSW</option>
 
                             </select>
                         </div>
@@ -177,22 +176,18 @@ if (isset($_POST['register'])) {
                         <div class="mb-3">
                             <label>Semester</label>
 
-                            <div class="mb-3">
-                                <label>Semester</label>
+                            <select name="semester" class="form-control" required>
 
-                                <select name="semester" class="form-control" required>
+                                <option value="">Select Semester</option>
 
-                                    <option value="">Select Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
 
-                                    <option value="1">Semester 1</option>
-                                    <option value="2">Semester 2</option>
-                                    <option value="3">Semester 3</option>
-                                    <option value="4">Semester 4</option>
-                                    <option value="5">Semester 5</option>
-                                    <option value="6">Semester 6</option>
-
-                                </select>
-                            </div>
+                            </select>
                         </div>
 
                         <div class="mb-3">

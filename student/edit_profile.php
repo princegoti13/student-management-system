@@ -156,6 +156,10 @@ $user = mysqli_fetch_assoc($query);
                     <option value="BA">BA</option>
                     <option value="BSc">BSc</option>
                     <option value="BTech">BTech</option>
+                    <option value="BEd">BEd</option>
+                    <option value="BPharm">BPharm</option>
+                    <option value="BHM">BHM</option>
+                    <option value="BSW">BSW</option>
 
                 </select>
             </div>
