@@ -9,26 +9,36 @@ if (isset($_POST['login'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = MD5($_POST['password']);
 
-    $query = mysqli_query(
-        $conn,
-        "SELECT * FROM users
+    if (
+        !filter_var($email, FILTER_VALIDATE_EMAIL)
+        ||
+        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
+    ) {
+        $message = "Invalid Email Address";
+        $messageType = "danger";
+    } else {
+
+        $query = mysqli_query(
+            $conn,
+            "SELECT * FROM users
          WHERE email='$email'
          AND password='$password'
          AND role='admin'"
-    );
+        );
 
-    if (mysqli_num_rows($query) == 1) {
-        $user = mysqli_fetch_assoc($query);
+        if (mysqli_num_rows($query) == 1) {
+            $user = mysqli_fetch_assoc($query);
 
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['name'] = $user['name'];
-        $_SESSION['role'] = $user['role'];
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['name'] = $user['name'];
+            $_SESSION['role'] = $user['role'];
 
-        $message = "Admin Login Successful";
-        $messageType = "success";
-    } else {
-        $message = "Invalid Admin Credentials";
-        $messageType = "danger";
+            $message = "Admin Login Successful";
+            $messageType = "success";
+        } else {
+            $message = "Invalid Admin Credentials";
+            $messageType = "danger";
+        }
     }
 }
 ?>
@@ -73,6 +83,8 @@ if (isset($_POST['login'])) {
                             <input type="email"
                                 name="email"
                                 class="form-control"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                title="Enter Valid Email Address"
                                 required>
 
                         </div>
