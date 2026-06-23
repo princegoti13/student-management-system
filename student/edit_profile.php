@@ -21,6 +21,7 @@ $query = mysqli_query(
 $user = mysqli_fetch_assoc($query);
 
 if (isset($_POST['update'])) {
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
@@ -28,37 +29,12 @@ if (isset($_POST['update'])) {
     $course = $_POST['course'];
     $semester = $_POST['semester'];
     $address = $_POST['address'];
+
     $photoName = $user['photo'];
 
     if (!empty($_FILES['photo']['name'])) {
-        $photoName = time() . "_" . $_FILES['photo']['name'];
 
-        $uploadDir = __DIR__ . "/../uploads/";
-
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-    }
-
-    $sql = "UPDATE users SET
-        name='$name',
-        email='$email',
-        mobile='$mobile',
-        gender='$gender',
-        course='$course',
-        semester='$semester',
-        address='$address',
-        photo='$photoName'
-        WHERE id='$id'";
-
-    if (mysqli_query($conn, $sql)) {
-        $message = "Profile Updated Successfully";
-    } else {
-        $message = mysqli_error($conn);
-    }
-
-    if (!empty($_FILES['photo']['name'])) {
-        $photoName = time() . "_" . $_FILES['photo']['name'];
+        $photoName = time() . "_" . basename($_FILES['photo']['name']);
 
         $uploadDir = __DIR__ . "/../uploads/";
 
@@ -70,6 +46,23 @@ if (isset($_POST['update'])) {
             $_FILES['photo']['tmp_name'],
             $uploadDir . $photoName
         );
+    }
+
+    $sql = "UPDATE users SET
+            name='$name',
+            email='$email',
+            mobile='$mobile',
+            gender='$gender',
+            course='$course',
+            semester='$semester',
+            address='$address',
+            photo='$photoName'
+            WHERE id='$id'";
+
+    if (mysqli_query($conn, $sql)) {
+        $message = "Profile Updated Successfully";
+    } else {
+        $message = mysqli_error($conn);
     }
 }
 
