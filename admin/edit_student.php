@@ -28,6 +28,13 @@ if (isset($_POST['update'])) {
 
     if (mysqli_query($conn, $sql)) {
         $message = "Student Updated Successfully";
+        echo "
+<script>
+setTimeout(function(){
+    window.location='dashboard.php';
+},1000);
+</script>
+";
     } else {
         $message = "Error : " . mysqli_error($conn);
     }

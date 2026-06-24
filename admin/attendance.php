@@ -54,7 +54,7 @@ if (isset($_POST['save'])) {
     echo "
 <script>
 setTimeout(function(){
-    window.location='attendance_history.php';
+    window.location='dashboard.php';
 },3000);
 </script>
 ";
