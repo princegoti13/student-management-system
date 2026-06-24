@@ -11,6 +11,14 @@ $id = $_GET['id'];
 
 $message = "";
 
+$query = mysqli_query(
+    $conn,
+    "SELECT * FROM users
+     WHERE id='$id'"
+);
+
+$user = mysqli_fetch_assoc($query);
+
 if (isset($_POST['update'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -84,7 +92,6 @@ $row = mysqli_fetch_assoc($query);
 
             <div class="mb-3">
                 <label>Name</label>
-
                 <input type="text"
                     name="name"
                     class="form-control"
@@ -94,21 +101,22 @@ $row = mysqli_fetch_assoc($query);
 
             <div class="mb-3">
                 <label>Email</label>
-
                 <input type="email"
                     name="email"
                     class="form-control"
-                    value="<?php echo $row['email']; ?>"
+                    value="<?php echo $user['email']; ?>"
                     required>
             </div>
 
             <div class="mb-3">
                 <label>Mobile</label>
-
                 <input type="text"
                     name="mobile"
                     class="form-control"
-                    value="<?php echo $row['mobile']; ?>">
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    value="<?php echo $user['mobile']; ?>"
+                    required>
             </div>
 
             <div class="mb-3">

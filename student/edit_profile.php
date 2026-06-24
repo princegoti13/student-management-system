@@ -139,7 +139,10 @@ $user = mysqli_fetch_assoc($query);
                 <input type="text"
                     name="mobile"
                     class="form-control"
-                    value="<?php echo $user['mobile']; ?>">
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    value="<?php echo $user['mobile']; ?>"
+                    required>
             </div>
 
             <div class="mb-3">
