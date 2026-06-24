@@ -80,12 +80,27 @@ if (isset($_POST['login'])) {
                         </div>
 
                         <div class="mb-3">
+
                             <label>Password</label>
 
-                            <input type="password"
-                                name="password"
-                                class="form-control"
-                                required>
+                            <div class="input-group">
+
+                                <input type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-control"
+                                    required>
+
+                                <button type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword()">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
                         </div>
 
                         <input type="submit"
@@ -122,7 +137,18 @@ if (isset($_POST['login'])) {
         <?php
         }
         ?>
-    </script>
+
+        function togglePassword() {
+            var password =
+                document.getElementById("password");
+
+            if (password.type === "password") {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        }
+    </script>    
 
 </body>
 
