@@ -14,7 +14,8 @@ $result = mysqli_query(
      FROM attendance
      INNER JOIN users
      ON attendance.student_id = users.id
-     ORDER BY attendance_date DESC"
+     ORDER BY attendance_date DESC,
+              lecture_no ASC"
 );
 ?>
 
@@ -47,22 +48,42 @@ $result = mysqli_query(
 
         <table class="table table-bordered table-striped">
 
-            <tr>
-
-                <th>ID</th>
-                <th>Student</th>
-                <th>Date</th>
-                <th>Subject</th>
-                <th>Lecture</th>
-                <th>Status</th>
-                <th>Action</th>
-
-            </tr>
-
             <?php
 
+            $currentDate = "";
+
             while ($row = mysqli_fetch_assoc($result)) {
+                if ($currentDate != $row['attendance_date']) {
+                    $currentDate = $row['attendance_date'];
             ?>
+
+                    <tr class="table-dark">
+
+                        <td colspan="6">
+
+                            <h5 class="mb-0">
+                                📅 Date :
+                                <?php echo $currentDate; ?>
+                            </h5>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Subject</th>
+                        <th>Lecture</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                <?php
+                }
+                ?>
 
                 <tr>
 
@@ -70,11 +91,11 @@ $result = mysqli_query(
 
                     <td><?php echo $row['name']; ?></td>
 
-                    <td><?php echo $row['attendance_date']; ?></td>
-
                     <td><?php echo $row['subject']; ?></td>
 
-                    <td><?php echo $row['lecture_no']; ?></td>
+                    <td>
+                        Lecture <?php echo $row['lecture_no']; ?>
+                    </td>
 
                     <td>
 
