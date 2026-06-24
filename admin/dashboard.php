@@ -45,15 +45,6 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
         )
     );
 
-    $totalBCA = mysqli_num_rows(
-        mysqli_query(
-            $conn,
-            "SELECT * FROM users
-         WHERE role='student'
-         AND course='BCA'"
-        )
-    );
-
     $result = mysqli_query(
         $conn,
         "SELECT * FROM users
@@ -164,16 +155,7 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                         <h5>Female Students</h5>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card bg-warning text-dark">
-                    <div class="card-body text-center">
-                        <h2><?php echo $totalBCA; ?></h2>
-                        <h5>BCA Students</h5>
-                    </div>
-                </div>
-            </div>
+            </div>            
 
         </div>
 
