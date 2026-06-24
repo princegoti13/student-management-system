@@ -32,9 +32,12 @@ if (isset($_POST['update'])) {
 
     $photoName = $user['photo'];
 
-    if (!empty($_FILES['photo']['name'])) {
+    $photoName = $user['photo'];
 
-        $photoName = time() . "_" . basename($_FILES['photo']['name']);
+    if (!empty($_FILES['photo']['name'])) {
+        $newPhotoName =
+            time() . "_" .
+            basename($_FILES['photo']['name']);
 
         $uploadDir = __DIR__ . "/../uploads/";
 
@@ -42,10 +45,14 @@ if (isset($_POST['update'])) {
             mkdir($uploadDir, 0777, true);
         }
 
-        move_uploaded_file(
-            $_FILES['photo']['tmp_name'],
-            $uploadDir . $photoName
-        );
+        if (
+            move_uploaded_file(
+                $_FILES['photo']['tmp_name'],
+                $uploadDir . $newPhotoName
+            )
+        ) {
+            $photoName = $newPhotoName;
+        }
     }
 
     $sql = "UPDATE users SET
