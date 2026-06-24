@@ -59,6 +59,16 @@ if (isset($_POST['update'])) {
             photo='$photoName'
             WHERE id='$id'";
 
+    if (
+        !filter_var($email, FILTER_VALIDATE_EMAIL)
+        ||
+        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
+    ) {
+        $message = "Invalid Email Address";
+    } elseif (!preg_match('/^[0-9]{10}$/', $mobile)) {
+        $message = "Mobile Number Must Be 10 Digits";
+    }
+
     if (mysqli_query($conn, $sql)) {
         $message = "Profile Updated Successfully";
 

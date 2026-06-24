@@ -75,7 +75,7 @@ $user = mysqli_fetch_assoc($query);
             Change Password
         </a>
 
-        <a href="../logout.php"
+        <a href="../login.php"
             class="btn btn-danger mb-3">
             Logout
         </a>
