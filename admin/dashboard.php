@@ -132,7 +132,7 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
             Attendance History
         </a>
 
-        <a href="../logout.php"
+        <a href="admin_login.php"
             class="btn btn-danger mb-3">
             Logout
         </a>
