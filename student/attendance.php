@@ -112,7 +112,7 @@ if ($totalAttendance > 0) {
                     <h5>Attendance %</h5>
 
                     <h2>
-                        <?php echo $percentage; ?>%
+                        <?php echo $percentage; ?>
                     </h2>
 
                 </div>

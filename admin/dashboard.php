@@ -127,6 +127,11 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
             Attendance
         </a>
 
+        <a href="attendance_history.php"
+            class="btn btn-info mb-3">
+            Attendance History
+        </a>
+
         <a href="../logout.php"
             class="btn btn-danger mb-3">
             Logout
@@ -194,12 +199,40 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                 <th>Mobile</th>
                 <th>Course</th>
                 <th>Semester</th>
+                <th>Attendance</th>
                 <th>Action</th>
 
             </tr>
 
             <?php
             while ($row = mysqli_fetch_assoc($result)) {
+
+                $totalAttendance = mysqli_num_rows(
+                    mysqli_query(
+                        $conn,
+                        "SELECT * FROM attendance
+         WHERE student_id='" . $row['id'] . "'"
+                    )
+                );
+
+                $totalPresent = mysqli_num_rows(
+                    mysqli_query(
+                        $conn,
+                        "SELECT * FROM attendance
+         WHERE student_id='" . $row['id'] . "'
+         AND status='Present'"
+                    )
+                );
+
+                $attendancePercentage = 0;
+
+                if ($totalAttendance > 0) {
+                    $attendancePercentage =
+                        round(
+                            ($totalPresent / $totalAttendance) * 100,
+                            2
+                        );
+                }
 
                 $photoPath = "/uploads/default-user.png";
 
@@ -226,6 +259,25 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                     <td><?php echo $row['mobile']; ?></td>
                     <td><?php echo $row['course']; ?></td>
                     <td><?php echo $row['semester']; ?></td>
+                    <td><?php echo $attendancePercentage; ?>%</td>
+
+                    <td>
+
+                        <?php
+
+                        if ($attendancePercentage >= 75) {
+                            echo "<span class='badge bg-success'>";
+                        } elseif ($attendancePercentage >= 50) {
+                            echo "<span class='badge bg-warning'>";
+                        } else {
+                            echo "<span class='badge bg-danger'>";
+                        }
+
+                        echo $attendancePercentage . "%</span>";
+
+                        ?>
+
+                    </td>
 
                     <td>
                         <a href="edit_student.php?id=<?php echo $row['id']; ?>"
