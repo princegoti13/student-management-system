@@ -10,25 +10,35 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
 $message = "";
 
 if (isset($_POST['save'])) {
-    $student_id = $_POST['student_id'];
-    $attendance_date = $_POST['attendance_date'];
-    $status = $_POST['status'];
+    $date = date("Y-m-d");
 
-    $insert = mysqli_query(
+    $students = mysqli_query(
         $conn,
-        "INSERT INTO attendance
-        (student_id, attendance_date, status)
-        VALUES
-        (
-        '$student_id',
-        '$attendance_date',
-        '$status'
-        )"
+        "SELECT * FROM users
+         WHERE role='student'"
     );
 
-    if ($insert) {
-        $message = "Attendance Saved Successfully";
+    while ($student = mysqli_fetch_assoc($students)) {
+        $student_id = $student['id'];
+
+        $status = isset($_POST['attendance'][$student_id])
+            ? "Present"
+            : "Absent";
+
+        mysqli_query(
+            $conn,
+            "INSERT INTO attendance
+            (student_id,attendance_date,status)
+            VALUES
+            (
+            '$student_id',
+            '$date',
+            '$status'
+            )"
+        );
     }
+
+    $message = "Attendance Saved Successfully";
 }
 ?>
 
@@ -47,7 +57,7 @@ if (isset($_POST['save'])) {
 
     <div class="container mt-5">
 
-        <h2>Attendance Management</h2>
+        <h2>Today's Attendance</h2>
 
         <?php
         if ($message != "") {
@@ -61,63 +71,45 @@ if (isset($_POST['save'])) {
 
         <form method="post">
 
-            <div class="mb-3">
+            <table class="table table-bordered">
 
-                <label>Select Student</label>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Present</th>
+                </tr>
 
-                <select name="student_id" class="form-control" required>
+                <?php
 
-                    <option value="">Select Student</option>
-
-                    <?php
-
-                    $students = mysqli_query(
-                        $conn,
-                        "SELECT * FROM users
+                $students = mysqli_query(
+                    $conn,
+                    "SELECT * FROM users
      WHERE role='student'"
-                    );
+                );
 
-                    while ($student = mysqli_fetch_assoc($students)) {
-                    ?>
+                while ($row = mysqli_fetch_assoc($students)) {
+                ?>
 
-                        <option value="<?php echo $student['id']; ?>">
-                            <?php echo $student['name']; ?>
-                        </option>
+                    <tr>
 
-                    <?php
-                    }
-                    ?>
+                        <td><?php echo $row['id']; ?></td>
 
-                </select>
+                        <td><?php echo $row['name']; ?></td>
 
-            </div>
+                        <td>
 
-            <div class="mb-3">
+                            <input type="checkbox"
+                                name="attendance[<?php echo $row['id']; ?>]">
 
-                <label>Date</label>
+                        </td>
 
-                <input type="date"
-                    name="attendance_date"
-                    class="form-control"
-                    required>
+                    </tr>
 
-            </div>
+                <?php
+                }
+                ?>
 
-            <div class="mb-3">
-
-                <label>Status</label>
-
-                <select name="status"
-                    class="form-control"
-                    required>
-
-                    <option value="Present">Present</option>
-
-                    <option value="Absent">Absent</option>
-
-                </select>
-
-            </div>
+            </table>
 
             <input type="submit"
                 name="save"
