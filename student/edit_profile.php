@@ -32,30 +32,19 @@ if (isset($_POST['update'])) {
 
     $photoName = $user['photo'];
 
-    $photoName = $user['photo'];
+    if (empty(trim($address))) {
+        $message = "Address Is Required";
+    } elseif (
+        !filter_var($email, FILTER_VALIDATE_EMAIL)
+        ||
+        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
+    ) {
+        $message = "Invalid Email Address";
+    } elseif (!preg_match('/^[0-9]{10}$/', $mobile)) {
+        $message = "Mobile Number Must Be 10 Digits";
+    } else {
 
-    if (!empty($_FILES['photo']['name'])) {
-        $newPhotoName =
-            time() . "_" .
-            basename($_FILES['photo']['name']);
-
-        $uploadDir = __DIR__ . "/../uploads/";
-
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-
-        if (
-            move_uploaded_file(
-                $_FILES['photo']['tmp_name'],
-                $uploadDir . $newPhotoName
-            )
-        ) {
-            $photoName = $newPhotoName;
-        }
-    }
-
-    $sql = "UPDATE users SET
+        $sql = "UPDATE users SET
             name='$name',
             email='$email',
             mobile='$mobile',
@@ -66,28 +55,20 @@ if (isset($_POST['update'])) {
             photo='$photoName'
             WHERE id='$id'";
 
-    if (
-        !filter_var($email, FILTER_VALIDATE_EMAIL)
-        ||
-        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
-    ) {
-        $message = "Invalid Email Address";
-    } elseif (!preg_match('/^[0-9]{10}$/', $mobile)) {
-        $message = "Mobile Number Must Be 10 Digits";
-    }
+        if (mysqli_query($conn, $sql)) {
 
-    if (mysqli_query($conn, $sql)) {
-        $message = "Profile Updated Successfully";
+            $message = "Profile Updated Successfully";
 
-        echo "
+            echo "
 <script>
 setTimeout(function(){
     window.location='profile.php';
-},1000);
+},3000);
 </script>
 ";
-    } else {
-        $message = mysqli_error($conn);
+        } else {
+            $message = mysqli_error($conn);
+        }
     }
 }
 
@@ -115,11 +96,15 @@ $user = mysqli_fetch_assoc($query);
 
         <h2>Edit Profile</h2>
 
-        <?php
-        if ($message != "") {
-            echo "<div class='alert alert-success'>$message</div>";
-        }
-        ?>
+        <?php if ($message != "") { ?>
+
+            <div class="alert <?php echo strpos($message, 'Successfully') !== false ? 'alert-success' : 'alert-danger'; ?>">
+
+                <?php echo $message; ?>
+
+            </div>
+
+        <?php } ?>
 
         <form method="post" enctype="multipart/form-data">
 
@@ -155,7 +140,7 @@ $user = mysqli_fetch_assoc($query);
             <div class="mb-3">
                 <label>Gender</label>
 
-                <select name="gender" class="form-control">
+                <select name="gender" class="form-control" required>
 
                     <option value="Male"
                         <?php if ($user['gender'] == "Male") echo "selected"; ?>>
@@ -251,7 +236,8 @@ $user = mysqli_fetch_assoc($query);
                 <label>Address</label>
 
                 <textarea name="address"
-                    class="form-control"><?php echo $user['address']; ?></textarea>
+                    class="form-control"
+                    required><?php echo $user['address']; ?></textarea>
 
             </div>
 
