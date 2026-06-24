@@ -178,7 +178,6 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Gender</th>
                 <th>Mobile</th>
                 <th>Course</th>
@@ -240,7 +239,6 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['password']; ?></td>
                     <td><?php echo $row['gender']; ?></td>
                     <td><?php echo $row['mobile']; ?></td>
                     <td><?php echo $row['course']; ?></td>
