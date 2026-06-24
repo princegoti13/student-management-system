@@ -123,32 +123,63 @@ if ($totalAttendance > 0) {
 
         <table class="table table-bordered table-striped">
 
-            <tr>
-
-                <th>Date</th>
-                <th>Subject</th>
-                <th>Lecture</th>
-                <th>Status</th>
-
-            </tr>
-
             <?php
 
+            $currentDate = "";
+            $currentSubject = "";
+
             while ($row = mysqli_fetch_assoc($attendance)) {
+                if ($currentDate != $row['attendance_date']) {
+                    $currentDate = $row['attendance_date'];
+                    $currentSubject = "";
             ?>
+
+                    <tr class="table-dark">
+
+                        <td colspan="2">
+
+                            <h5 class="mb-0">
+                                📅 Date : <?php echo $currentDate; ?>
+                            </h5>
+
+                        </td>
+
+                    </tr>
+
+                <?php
+                }
+
+                if ($currentSubject != $row['subject']) {
+                    $currentSubject = $row['subject'];
+                ?>
+
+                    <tr class="table-primary">
+
+                        <td colspan="2">
+
+                            <h6 class="mb-0">
+                                📚 Subject : <?php echo $currentSubject; ?>
+                            </h6>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Lecture</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                <?php
+                }
+                ?>
 
                 <tr>
 
                     <td>
-                        <?php echo $row['attendance_date']; ?>
-                    </td>
-
-                    <td>
-                        <?php echo $row['subject']; ?>
-                    </td>
-
-                    <td>
-                        <?php echo $row['lecture_no']; ?>
+                        Lecture <?php echo $row['lecture_no']; ?>
                     </td>
 
                     <td>
