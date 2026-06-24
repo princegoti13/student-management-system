@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-echo "ADMIN SESSION ID: ";
-echo $_SESSION['user_id'];
-echo "<br>";
-echo $_SESSION['role'];
-echo "<br>";
-
 require_once __DIR__ . '/../db.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
