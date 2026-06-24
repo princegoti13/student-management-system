@@ -9,18 +9,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
 
 $result = mysqli_query(
     $conn,
-    "SELECT
-        attendance_date,
-        subject,
-        lecture_no,
-        SUM(status='Present') AS total_present,
-        SUM(status='Absent') AS total_absent
-    FROM attendance
-    GROUP BY
-        attendance_date,
-        subject,
-        lecture_no
-    ORDER BY attendance_date DESC, lecture_no ASC"
+    "SELECT attendance.*,
+            users.name
+     FROM attendance
+     INNER JOIN users
+     ON attendance.student_id = users.id
+     ORDER BY attendance_date DESC"
 );
 ?>
 
@@ -39,9 +33,7 @@ $result = mysqli_query(
 
     <div class="container mt-5">
 
-        <h2 class="mb-4">
-            Attendance History
-        </h2>
+        <h2>Attendance History</h2>
 
         <a href="attendance.php"
             class="btn btn-success mb-3">
@@ -55,67 +47,60 @@ $result = mysqli_query(
 
         <table class="table table-bordered table-striped">
 
+            <tr>
+
+                <th>ID</th>
+                <th>Student</th>
+                <th>Date</th>
+                <th>Subject</th>
+                <th>Lecture</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
             <?php
 
-            $currentDate = "";
-
             while ($row = mysqli_fetch_assoc($result)) {
-
-                if ($currentDate != $row['attendance_date']) {
-                    $currentDate = $row['attendance_date'];
             ?>
-
-                    <tr class="table-dark">
-
-                        <td colspan="5">
-
-                            <h5 class="mb-0">
-                                📅 Date :
-                                <?php echo $currentDate; ?>
-                            </h5>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <th>Subject</th>
-                        <th>Lecture</th>
-                        <th>Present</th>
-                        <th>Absent</th>
-                        <th>Total</th>
-
-                    </tr>
-
-                <?php
-                }
-                ?>
 
                 <tr>
 
+                    <td><?php echo $row['id']; ?></td>
+
+                    <td><?php echo $row['name']; ?></td>
+
+                    <td><?php echo $row['attendance_date']; ?></td>
+
+                    <td><?php echo $row['subject']; ?></td>
+
+                    <td><?php echo $row['lecture_no']; ?></td>
+
                     <td>
-                        <?php echo $row['subject']; ?>
+
+                        <?php
+                        if ($row['status'] == "Present") {
+                            echo "<span class='badge bg-success'>Present</span>";
+                        } else {
+                            echo "<span class='badge bg-danger'>Absent</span>";
+                        }
+                        ?>
+
                     </td>
 
                     <td>
-                        Lecture <?php echo $row['lecture_no']; ?>
-                    </td>
 
-                    <td>
-                        <span class="badge bg-success">
-                            <?php echo $row['total_present']; ?>
-                        </span>
-                    </td>
+                        <a href="edit_attendance.php?id=<?php echo $row['id']; ?>"
+                            class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
 
-                    <td>
-                        <span class="badge bg-danger">
-                            <?php echo $row['total_absent']; ?>
-                        </span>
-                    </td>
+                        <a href="delete_attendance.php?id=<?php echo $row['id']; ?>"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Delete Attendance?')">
+                            Delete
+                        </a>
 
-                    <td>
-                        <?php echo $row['total_present'] + $row['total_absent']; ?>
                     </td>
 
                 </tr>
