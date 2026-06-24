@@ -258,8 +258,7 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['mobile']; ?></td>
                     <td><?php echo $row['course']; ?></td>
-                    <td><?php echo $row['semester']; ?></td>
-                    <td><?php echo $attendancePercentage; ?>%</td>
+                    <td><?php echo $row['semester']; ?></td>                    
 
                     <td>
 
