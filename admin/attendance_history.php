@@ -87,25 +87,23 @@ $result = mysqli_query(
 
                         <td colspan="5">
 
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap">
 
                                 <h5 class="mb-0">
                                     📚 Subject : <?php echo $currentSubject; ?>
                                 </h5>
 
                                 <a href="delete_subject_attendance.php?date=<?php echo $currentDate; ?>&subject=<?php echo urlencode($currentSubject); ?>"
-                                    class="btn btn-danger btn-sm"
+                                    class="btn btn-danger btn-sm px-3"
                                     onclick="return confirm(
                                     '⚠️ WARNING!\n\n' +
                                     'Are You Sure You Want To Delete All Attendance Records?\n\n' +
                                     'Date : <?php echo $currentDate; ?>\n' +
                                     'Subject : <?php echo $currentSubject; ?>\n\n' +
                                     'This Action Cannot Be Undone!'
-                                    )"
-
+                                    )">
                                     Delete Subject
-
-                                    </a>
+                                </a>
 
                             </div>
 
