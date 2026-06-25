@@ -32,6 +32,40 @@ if (isset($_POST['update'])) {
 
     $photoName = $user['photo'];
 
+    if (!empty($_FILES['photo']['name'])) {
+
+        $newPhotoName =
+            time() . "_" .
+            basename($_FILES['photo']['name']);
+
+        $uploadDir = __DIR__ . "/../uploads/";
+
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        if (
+            move_uploaded_file(
+                $_FILES['photo']['tmp_name'],
+                $uploadDir . $newPhotoName
+            )
+        ) {
+
+            // જૂની photo delete કરો (default સિવાય)
+            if (
+                !empty($user['photo']) &&
+                $user['photo'] != "default-user.png" &&
+                file_exists($uploadDir . $user['photo'])
+            ) {
+                unlink($uploadDir . $user['photo']);
+            }
+
+            $photoName = $newPhotoName;
+        } else {
+            $message = "Photo Upload Failed";
+        }
+    }
+
     if (empty(trim($address))) {
         $message = "Address Is Required";
     } elseif (

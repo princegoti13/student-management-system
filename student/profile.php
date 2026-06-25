@@ -48,11 +48,11 @@ $user = mysqli_fetch_assoc($query);
 
         <div class="mb-4">
 
-            <img src="<?php echo $photoPath; ?>"
-                width="220"
-                height="220"
-                class="rounded-circle"
-                style="object-fit:cover;border:4px solid #ccc;">
+            <img src="<?php echo $photoPath . '?v=' . time(); ?>" 
+            width="220"
+            height="220"
+            class="rounded-circle"
+            style="object-fit:cover;border:4px solid #ccc;">
 
         </div>
 
