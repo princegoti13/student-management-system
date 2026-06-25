@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
             )
         ) {
 
-            // જૂની photo delete કરો (default સિવાય)
+            
             if (
                 !empty($user['photo']) &&
                 $user['photo'] != "default-user.png" &&
