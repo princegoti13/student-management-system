@@ -110,17 +110,15 @@ if (isset($_POST['login'])) {
                                     <i id="eye1" class="bi bi-eye"></i>
 
                                 </button>
-                                <br>    
-
-                                <div class="text-center mt-3">
-
-                                    <a href="admin_forgot_password.php">
-                                        Forgot Password?
-                                    </a>
-
-                                </div>
 
                             </div>
+
+                        </div>
+                        <div class="text-center mt-3">
+
+                            <a href="admin_forgot_password.php">
+                                Forgot Password?
+                            </a>
 
                         </div>
 
