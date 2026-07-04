@@ -111,12 +111,13 @@ if (isset($_POST['login'])) {
 
                                 </button>
 
-                                <div class="text-end mt-2">
-                                    <a href="forgot_password.php">
+                                <div class="text-center mt-3">
+
+                                    <a href="admin_forgot_password.php">
                                         Forgot Password?
                                     </a>
+
                                 </div>
-                                
 
                             </div>
 
