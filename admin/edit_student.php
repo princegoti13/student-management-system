@@ -85,13 +85,24 @@ if (isset($_POST['update'])) {
 
             $message = "Student Updated Successfully";
 
-            echo "
-<script>
-alert('Student Updated Successfully');
-window.location='dashboard.php';
-</script>
-";
-            exit();
+                        echo "
+            <script>
+            setTimeout(function(){
+                window.location='dashboard.php';
+            },1500);
+            </script>
+            ";
+            
+            
+//             echo "
+// <script>
+// alert('Student Updated Successfully');
+// window.location='dashboard.php';
+// </script>
+// ";
+//             exit();
+
+
         } else {
 
             $message = mysqli_error($conn);
