@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
             )
         ) {
 
-            
+
             if (
                 !empty($user['photo']) &&
                 $user['photo'] != "default-user.png" &&
@@ -142,26 +142,60 @@ $user = mysqli_fetch_assoc($query);
 
         <form method="post" enctype="multipart/form-data">
 
+            <div class="mb-3 text-left">
+
+                <?php
+                if (!empty($user['photo']) && file_exists("../uploads/" . $user['photo'])) {
+                ?>
+
+                    <img src="../uploads/<?php echo $user['photo']; ?>"
+                        width="150"
+                        height="150"
+                        style="border-radius:50%;object-fit:cover;border:3px solid #ccc;">
+
+                <?php
+                } else {
+                ?>
+
+                    <img src="../uploads/default.png"
+                        width="150"
+                        height="150"
+                        style="border-radius:50%;object-fit:cover;border:3px solid #ccc;">
+
+                <?php
+                }
+                ?>
+
+            </div>
+
             <div class="mb-3">
+
                 <label>Name</label>
+
                 <input type="text"
                     name="name"
                     class="form-control"
                     value="<?php echo $user['name']; ?>"
                     required>
+
             </div>
 
             <div class="mb-3">
+
                 <label>Email</label>
+
                 <input type="email"
                     name="email"
                     class="form-control"
                     value="<?php echo $user['email']; ?>"
                     required>
+
             </div>
 
             <div class="mb-3">
+
                 <label>Mobile</label>
+
                 <input type="text"
                     name="mobile"
                     class="form-control"
@@ -169,12 +203,16 @@ $user = mysqli_fetch_assoc($query);
                     pattern="[0-9]{10}"
                     value="<?php echo $user['mobile']; ?>"
                     required>
+
             </div>
 
             <div class="mb-3">
+
                 <label>Gender</label>
 
-                <select name="gender" class="form-control" required>
+                <select name="gender"
+                    class="form-control"
+                    required>
 
                     <option value="Male"
                         <?php if ($user['gender'] == "Male") echo "selected"; ?>>
@@ -191,86 +229,64 @@ $user = mysqli_fetch_assoc($query);
             </div>
 
             <div class="mb-3">
+
                 <label>Course</label>
 
-                <select name="course" class="form-control" required>
+                <select name="course"
+                    class="form-control"
+                    required>
 
-                    <option value="BCA"
-                        <?php if ($user['course'] == "BCA") echo "selected"; ?>>
-                        BCA
-                    </option>
+                    <option value="BCA" <?php if ($user['course'] == "BCA") echo "selected"; ?>>BCA</option>
 
-                    <option value="BBA"
-                        <?php if ($user['course'] == "BBA") echo "selected"; ?>>
-                        BBA
-                    </option>
+                    <option value="BBA" <?php if ($user['course'] == "BBA") echo "selected"; ?>>BBA</option>
 
-                    <option value="BCom"
-                        <?php if ($user['course'] == "BCom") echo "selected"; ?>>
-                        BCom
-                    </option>
+                    <option value="BCom" <?php if ($user['course'] == "BCom") echo "selected"; ?>>BCom</option>
 
-                    <option value="BA"
-                        <?php if ($user['course'] == "BA") echo "selected"; ?>>
-                        BA
-                    </option>
+                    <option value="BA" <?php if ($user['course'] == "BA") echo "selected"; ?>>BA</option>
 
-                    <option value="BSc"
-                        <?php if ($user['course'] == "BSc") echo "selected"; ?>>
-                        BSc
-                    </option>
+                    <option value="BSc" <?php if ($user['course'] == "BSc") echo "selected"; ?>>BSc</option>
 
-                    <option value="BTech"
-                        <?php if ($user['course'] == "BTech") echo "selected"; ?>>
-                        BTech
-                    </option>
+                    <option value="BTech" <?php if ($user['course'] == "BTech") echo "selected"; ?>>BTech</option>
 
                 </select>
+
             </div>
 
             <div class="mb-3">
+
                 <label>Semester</label>
 
-                <select name="semester" class="form-control" required>
+                <select name="semester"
+                    class="form-control"
+                    required>
 
-                    <option value="1"
-                        <?php if ($user['semester'] == "1") echo "selected"; ?>>
-                        Semester 1
-                    </option>
+                    <?php
+                    for ($i = 1; $i <= 6; $i++) {
+                    ?>
 
-                    <option value="2"
-                        <?php if ($user['semester'] == "2") echo "selected"; ?>>
-                        Semester 2
-                    </option>
+                        <option value="<?php echo $i; ?>"
+                            <?php if ($user['semester'] == $i) echo "selected"; ?>>
 
-                    <option value="3"
-                        <?php if ($user['semester'] == "3") echo "selected"; ?>>
-                        Semester 3
-                    </option>
+                            Semester <?php echo $i; ?>
 
-                    <option value="4"
-                        <?php if ($user['semester'] == "4") echo "selected"; ?>>
-                        Semester 4
-                    </option>
+                        </option>
 
-                    <option value="5"
-                        <?php if ($user['semester'] == "5") echo "selected"; ?>>
-                        Semester 5
-                    </option>
-
-                    <option value="6"
-                        <?php if ($user['semester'] == "6") echo "selected"; ?>>
-                        Semester 6
-                    </option>
+                    <?php
+                    }
+                    ?>
 
                 </select>
+
             </div>
 
             <div class="mb-3">
+
                 <label>Address</label>
 
-                <textarea name="address"
+                <textarea
+                    name="address"
                     class="form-control"
+                    rows="4"
                     required><?php echo $user['address']; ?></textarea>
 
             </div>
@@ -287,12 +303,14 @@ $user = mysqli_fetch_assoc($query);
 
             <input type="submit"
                 name="update"
-                value="Update Profile"
+                value="Update Student"
                 class="btn btn-success">
 
-            <a href="profile.php"
+            <a href="dashboard.php"
                 class="btn btn-primary">
+
                 Back
+
             </a>
 
         </form>

@@ -142,7 +142,7 @@ $user = mysqli_fetch_assoc($query);
 
         <form method="post" enctype="multipart/form-data">
 
-            <div class="mb-3 text-center">
+            <div class="mb-3 text-left">
 
                 <?php
                 if (!empty($user['photo']) && file_exists("../uploads/" . $user['photo'])) {
