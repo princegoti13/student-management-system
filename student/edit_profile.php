@@ -306,7 +306,7 @@ $user = mysqli_fetch_assoc($query);
                 value="Update Student"
                 class="btn btn-success">
 
-            <a href="dashboard.php"
+            <a href="profile.php"
                 class="btn btn-primary">
 
                 Back
