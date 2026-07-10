@@ -54,15 +54,16 @@ if (isset($_POST['login'])) {
 
             text-decoration: none;
             color: #0d6efd;
-            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
             transition: .3s;
+            font-weight: 600;
 
         }
-
         .form-link:hover {
 
-            color: #084298;
-            text-decoration: underline;
+            background: #e9f2ff;
+            color: #084298;       
 
         }
     </style>
