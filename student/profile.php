@@ -50,21 +50,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
+        .profile-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+
+        }
+
         .profile-image {
 
             position: relative;
 
-            width: 160px;
+            width: 150px;
 
-            margin: auto;
+            height: 150px;
+
+            flex-shrink: 0;
 
         }
 
         .profile-photo {
 
-            width: 160px;
+            width: 150px;
 
-            height: 160px;
+            height: 150px;
 
             border-radius: 50%;
 
@@ -72,43 +86,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             border: 4px solid #0d6efd;
 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+
         }
 
         .camera-btn {
 
             position: absolute;
 
-            right: 8px;
+            top: 5px;
 
-            bottom: 8px;
+            right: 5px;
 
-            width: 42px;
+            width: 34px;
 
-            height: 42px;
+            height: 34px;
 
-            background: #0d6efd;
+            background: #fff;
 
-            color: white;
+            color: #0d6efd;
+
+            border: 2px solid #0d6efd;
 
             border-radius: 50%;
 
             display: flex;
 
-            align-items: center;
-
             justify-content: center;
+
+            align-items: center;
 
             cursor: pointer;
 
-            font-size: 20px;
+            transition: .3s;
 
-            box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
 
         }
 
         .camera-btn:hover {
 
-            background: #084298;
+            background: #0d6efd;
+
+            color: #fff;
+
+            transform: scale(1.1);
+
+        }
+
+        .profile-info h5 {
+
+            margin-bottom: 5px;
+
+            font-weight: 700;
+
+        }
+
+        .profile-info p {
+
+            margin: 0;
+
+            color: #6c757d;
 
         }
     </style>
