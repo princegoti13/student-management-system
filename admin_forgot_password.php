@@ -3,6 +3,7 @@ session_start();
 require_once 'db.php';
 
 $message = "";
+$messageType = "";
 
 if (isset($_POST['verify'])) {
 
@@ -11,6 +12,7 @@ if (isset($_POST['verify'])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
         $message = "Invalid Email Address";
+        $messageType = "danger";
     } else {
 
         $query = mysqli_query(

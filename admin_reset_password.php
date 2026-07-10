@@ -73,6 +73,7 @@ if (isset($_POST['reset'])) {
         } else {
 
             $message = "Something Went Wrong";
+            $messageType = "danger";
         }
     }
 }
