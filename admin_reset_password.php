@@ -86,6 +86,7 @@ if (isset($_POST['reset'])) {
     <title>Admin Reset Password</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
 </head>
 
@@ -131,6 +132,14 @@ if (isset($_POST['reset'])) {
                                     class="form-control"
                                     required>
 
+                                <button type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('password','eye1')">
+
+                                    <i id="eye1" class="bi bi-eye"></i>
+
+                                </button>
+
                             </div>
 
                             <div class="mb-3">
@@ -142,6 +151,14 @@ if (isset($_POST['reset'])) {
                                     name="confirm"
                                     class="form-control"
                                     required>
+
+                                <button type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('confirm_password','eye2')">
+
+                                    <i id="eye2" class="bi bi-eye"></i>
+
+                                </button>
 
                             </div>
 
@@ -172,6 +189,34 @@ if (isset($_POST['reset'])) {
         </div>
 
     </div>
+
+    <script>
+        function togglePassword(inputId, eyeId) {
+
+            const password =
+                document.getElementById(inputId);
+
+            const eye =
+                document.getElementById(eyeId);
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                eye.classList.remove("bi-eye");
+                eye.classList.add("bi-eye-slash");
+
+            } else {
+
+                password.type = "password";
+
+                eye.classList.remove("bi-eye-slash");
+                eye.classList.add("bi-eye");
+
+            }
+
+        }
+    </script>
 
 </body>
 
