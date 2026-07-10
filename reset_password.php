@@ -48,7 +48,7 @@ if (isset($_POST['reset'])) {
         echo "
         <script>
         setTimeout(function(){
-            window.location='login.php';
+            window.location='admin_login.php';
         },1500);
         </script>";
     }

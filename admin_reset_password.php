@@ -38,50 +38,61 @@ if (isset($_POST['reset'])) {
                 WHERE email='$email'
                 AND role='admin'";
 
-        if (mysqli_query($conn, $sql)) {
-?>
-            <!DOCTYPE html>
-            <html>
+//         if (mysqli_query($conn, $sql)) {
+// ?>
+//             <!DOCTYPE html>
+//             <html>
 
-            <head>
+//             <head>
 
-                <title>Password Reset</title>
+//                 <title>Password Reset</title>
 
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+//                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-            </head>
+//             </head>
 
-            <body>
+//             <body>
 
-                <div class="container mt-5">
+//                 <div class="container mt-5">
 
-                    <div class="alert alert-success text-center">
+//                     <div class="alert alert-success text-center">
 
-                        <h4>✅ Password Reset Successfully</h4>
+//                         <h4>✅ Password Reset Successfully</h4>
 
-                        <p>Redirecting To Admin Login...</p>
+//                         <p>Redirecting To Admin Login...</p>
 
-                    </div>
+//                     </div>
 
-                </div>
+//                 </div>
 
-                <script>
-                    setTimeout(function() {
-                        window.location = "../admin_login.php";
-                    }, 1500);
-                </script>
+//                 <script>
+//                     setTimeout(function() {
+//                         window.location = "../admin_login.php";
+//                     }, 1500);
+//                 </script>
 
-            </body>
+//             </body>
 
-            </html>
+//             </html>
 
-<?php
-            exit();
-        } else {
+// <?php
+        //             exit();
+        //         } else {
 
-            $message = "Something Went Wrong";
-            $messageType = "danger";
-        }
+        //             $message = "Something Went Wrong";
+        //             $messageType = "danger";
+        //         }
+        unset($_SESSION['reset_user_id']);
+
+        $message = "Password Changed Successfully";
+        $messageType = "success";
+
+        echo "
+        <script>
+        setTimeout(function(){
+            window.location='admin_login.php';
+        },1500);
+        </script>";
     }
 }
 ?>
