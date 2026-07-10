@@ -82,6 +82,7 @@ if (isset($_POST['register'])) {
     <title>Register</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -257,15 +258,40 @@ if (isset($_POST['register'])) {
         }
         ?>
 
-        function togglePassword() {
-            var password =
-                document.getElementById("password");
+        // function togglePassword() {
+        //     var password =
+        //         document.getElementById("password");
+
+        //     if (password.type === "password") {
+        //         password.type = "text";
+        //     } else {
+        //         password.type = "password";
+        //     }
+        // }
+        function togglePassword(inputId, eyeId) {
+
+            const password =
+                document.getElementById(inputId);
+
+            const eye =
+                document.getElementById(eyeId);
 
             if (password.type === "password") {
+
                 password.type = "text";
+
+                eye.classList.remove("bi-eye");
+                eye.classList.add("bi-eye-slash");
+
             } else {
+
                 password.type = "password";
+
+                eye.classList.remove("bi-eye-slash");
+                eye.classList.add("bi-eye");
+
             }
+
         }
     </script>
 </body>
