@@ -19,7 +19,8 @@ if (isset($_POST['reset'])) {
 
         $message = "Password Must Be At Least 4 Characters";
         $messageType = "danger";
-    } elseif (empty($password) || empty($confirmPassword)) {
+    }
+    elseif (empty($password) || empty($confirmPassword)) {
 
         $message = "All Fields Are Required";
         $messageType = "danger";
@@ -48,7 +49,7 @@ if (isset($_POST['reset'])) {
         echo "
         <script>
         setTimeout(function(){
-            window.location='admin_login.php';
+            window.location='login.php';
         },1500);
         </script>";
     }

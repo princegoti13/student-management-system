@@ -37,51 +37,8 @@ if (isset($_POST['reset'])) {
                 SET password='$password'
                 WHERE email='$email'
                 AND role='admin'";
-
-//         if (mysqli_query($conn, $sql)) {
-// ?>
-//             <!DOCTYPE html>
-//             <html>
-
-//             <head>
-
-//                 <title>Password Reset</title>
-
-//                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-//             </head>
-
-//             <body>
-
-//                 <div class="container mt-5">
-
-//                     <div class="alert alert-success text-center">
-
-//                         <h4>✅ Password Reset Successfully</h4>
-
-//                         <p>Redirecting To Admin Login...</p>
-
-//                     </div>
-
-//                 </div>
-
-//                 <script>
-//                     setTimeout(function() {
-//                         window.location = "../admin_login.php";
-//                     }, 1500);
-//                 </script>
-
-//             </body>
-
-//             </html>
-
-// <?php
-        //             exit();
-        //         } else {
-
-        //             $message = "Something Went Wrong";
-        //             $messageType = "danger";
-        //         }
+                
+        mysqli_query($conn, $sql);
         unset($_SESSION['reset_user_id']);
 
         $message = "Password Changed Successfully";
