@@ -29,6 +29,7 @@ if (isset($_POST['verify'])) {
         } else {
 
             $message = "Admin Email Not Found";
+            $messageType = "danger";
         }
     }
 }
