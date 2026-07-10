@@ -3,6 +3,7 @@ session_start();
 require_once 'db.php';
 
 $message = "";
+$messageType = "";
 
 if (!isset($_GET['email'])) {
     header("Location: admin_forgot_password.php");
@@ -14,14 +15,20 @@ $email = mysqli_real_escape_string($conn, $_GET['email']);
 if (isset($_POST['reset'])) {
 
     $password = $_POST['password'];
-    $confirm = $_POST['confirm'];
+    $confirmPassword = $_POST['confirm_password '];
 
     if (strlen($password) < 4) {
 
         $message = "Password Must Be At Least 4 Characters";
-    } elseif ($password != $confirm) {
+        $messageType = "danger";
+    } elseif (empty($password) || empty($confirmPassword)) {
+
+        $message = "All Fields Are Required";
+        $messageType = "danger";
+    } elseif ($password != $confirmPassword) {
 
         $message = "Passwords Do Not Match";
+        $messageType = "danger";
     } else {
 
         $password = md5($password);

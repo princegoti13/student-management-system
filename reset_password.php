@@ -15,7 +15,11 @@ if (isset($_POST['reset'])) {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    if (empty($password) || empty($confirmPassword)) {
+    if (strlen($password) < 4) {
+
+        $message = "Password Must Be At Least 4 Characters";
+        $messageType = "danger";
+    } elseif (empty($password) || empty($confirmPassword)) {
 
         $message = "All Fields Are Required";
         $messageType = "danger";
@@ -147,9 +151,9 @@ if (isset($_POST['reset'])) {
                                 value="Update Password"
                                 class="btn btn-success w-100">
 
-                            <a href="admin_login.php"
+                            <a href="login.php"
                                 class="btn btn-secondary w-100 mt-2">
-                                Back To Admin Login
+                                Back To Login
                             </a>
 
                         </form>
