@@ -26,6 +26,70 @@ $user = mysqli_fetch_assoc($query);
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        .profile-image {
+
+            position: relative;
+
+            width: 160px;
+
+            margin: auto;
+
+        }
+
+        .profile-photo {
+
+            width: 160px;
+
+            height: 160px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 4px solid #0d6efd;
+
+        }
+
+        .camera-btn {
+
+            position: absolute;
+
+            right: 8px;
+
+            bottom: 8px;
+
+            width: 42px;
+
+            height: 42px;
+
+            background: #0d6efd;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            font-size: 20px;
+
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+
+        }
+
+        .camera-btn:hover {
+
+            background: #084298;
+
+        }
+    </style>
+
 </head>
 
 <body>
@@ -48,11 +112,22 @@ $user = mysqli_fetch_assoc($query);
 
         <div class="mb-4">
 
-            <img src="<?php echo $photoPath . '?v=' . time(); ?>" 
-            width="220"
-            height="220"
-            class="rounded-circle"
-            style="object-fit:cover;border:4px solid #ccc;">
+            <div class="profile-image">
+
+                <img src="../uploads/<?php echo $user['photo']; ?>"
+                    class="profile-photo">
+
+                <label for="photo" class="camera-btn">
+                    <i class="bi bi-camera-fill"></i>
+                </label>
+
+                <input type="file"
+                    id="photo"
+                    name="photo"
+                    hidden
+                    onchange="this.form.submit();">
+
+            </div>
 
         </div>
 
