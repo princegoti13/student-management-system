@@ -2,20 +2,20 @@
 session_start();
 require_once 'db.php';
 
-$message = "";
-$messageType = "";
-
 if (!isset($_GET['email'])) {
     header("Location: admin_forgot_password.php");
     exit();
 }
+
+$message = "";
+$messageType = "";
 
 $email = mysqli_real_escape_string($conn, $_GET['email']);
 
 if (isset($_POST['reset'])) {
 
     $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password '];
+    $confirmPassword = $_POST['confirm_password'];
 
     if (strlen($password) < 4) {
 
