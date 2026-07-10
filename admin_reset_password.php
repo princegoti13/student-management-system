@@ -100,19 +100,17 @@ if (isset($_POST['reset'])) {
 
                 <div class="card shadow">
 
-                    <div class="card-header bg-danger text-white text-center">
-
-                        <h3>Reset Admin Password</h3>
-
-                    </div>
-
                     <div class="card-body">
+
+                        <h3 class="text-center mb-4">
+                            Reset Admin Password
+                        </h3>
 
                         <?php
                         if ($message != "") {
                         ?>
 
-                            <div class="alert alert-danger">
+                            <div class="alert alert-<?php echo $messageType; ?>">
                                 <?php echo $message; ?>
                             </div>
 
@@ -126,19 +124,23 @@ if (isset($_POST['reset'])) {
 
                                 <label>New Password</label>
 
-                                <input
-                                    type="password"
-                                    name="password"
-                                    class="form-control"
-                                    required>
+                                <div class="input-group">
 
-                                <button type="button"
-                                    class="btn btn-outline-secondary"
-                                    onclick="togglePassword('password','eye1')">
+                                    <input type="password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control"
+                                        required>
 
-                                    <i id="eye1" class="bi bi-eye"></i>
+                                    <button type="button"
+                                        class="btn btn-outline-secondary"
+                                        onclick="togglePassword('password','eye1')">
 
-                                </button>
+                                        <i id="eye1" class="bi bi-eye"></i>
+
+                                    </button>
+
+                                </div>
 
                             </div>
 
@@ -146,39 +148,37 @@ if (isset($_POST['reset'])) {
 
                                 <label>Confirm Password</label>
 
-                                <input
-                                    type="password"
-                                    name="confirm"
-                                    class="form-control"
-                                    required>
+                                <div class="input-group">
 
-                                <button type="button"
-                                    class="btn btn-outline-secondary"
-                                    onclick="togglePassword('confirm_password','eye2')">
+                                    <input type="password"
+                                        id="confirm_password"
+                                        name="confirm_password"
+                                        class="form-control"
+                                        required>
 
-                                    <i id="eye2" class="bi bi-eye"></i>
+                                    <button type="button"
+                                        class="btn btn-outline-secondary"
+                                        onclick="togglePassword('confirm_password','eye2')">
 
-                                </button>
+                                        <i id="eye2" class="bi bi-eye"></i>
+
+                                    </button>
+
+                                </div>
 
                             </div>
 
-                            <input
-                                type="submit"
+                            <input type="submit"
                                 name="reset"
-                                value="Reset Password"
-                                class="btn btn-danger w-100">
+                                value="Update Password"
+                                class="btn btn-success w-100">
 
-                        </form>
-
-                        <div class="text-center mt-3">
-
-                            <a href="../admin_login.php">
-
-                                Back To Login
-
+                            <a href="admin_login.php"
+                                class="btn btn-secondary w-100 mt-2">
+                                Back To Admin Login
                             </a>
 
-                        </div>
+                        </form>
 
                     </div>
 

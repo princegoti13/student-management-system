@@ -147,9 +147,9 @@ if (isset($_POST['reset'])) {
                                 value="Update Password"
                                 class="btn btn-success w-100">
 
-                            <a href="login.php"
+                            <a href="admin_login.php"
                                 class="btn btn-secondary w-100 mt-2">
-                                Back To Login
+                                Back To Admin Login
                             </a>
 
                         </form>
