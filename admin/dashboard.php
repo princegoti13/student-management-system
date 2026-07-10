@@ -163,126 +163,160 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
 
         <form method="GET" class="mb-3">
 
-            <input type="text"
+            <!-- <input type="text"
                 name="search"
                 class="form-control"
                 placeholder="Search By Name Or Email"
-                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>"> -->
+
+            <input type="text"
+                id="search"
+                class="form-control"
+                placeholder="Search By Name Or Email"
+                onkeyup="liveSearch()">
 
         </form>
 
-        <table class="table table-bordered table-striped">
+        <div id="studentTable">
 
-            <tr>
-                <th>Photo</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Gender</th>
-                <th>Mobile</th>
-                <th>Course</th>
-                <th>Semester</th>
-                <th>Attendance</th>
-                <th>Action</th>
+            <table class="table table-bordered table-striped">
 
-            </tr>
-
-            <?php
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                $totalAttendance = mysqli_num_rows(
-                    mysqli_query(
-                        $conn,
-                        "SELECT * FROM attendance
-         WHERE student_id='" . $row['id'] . "'"
-                    )
-                );
-
-                $totalPresent = mysqli_num_rows(
-                    mysqli_query(
-                        $conn,
-                        "SELECT * FROM attendance
-         WHERE student_id='" . $row['id'] . "'
-         AND status='Present'"
-                    )
-                );
-
-                $attendancePercentage = 0;
-
-                if ($totalAttendance > 0) {
-                    $attendancePercentage =
-                        round(
-                            ($totalPresent / $totalAttendance) * 100,
-                            2
-                        );
-                }
-
-                $photoPath = "/uploads/default-user.png";
-
-                if (
-                    !empty($row['photo']) &&
-                    file_exists(__DIR__ . "/../uploads/" . $row['photo'])
-                ) {
-                    $photoPath = "/uploads/" . $row['photo'];
-                }
-            ?>
                 <tr>
-
-                    <td>
-                        <img src="<?php echo $photoPath; ?>"
-                            width="60"
-                            height="60"
-                            class="rounded-circle"
-                            style="object-fit:cover;">
-                    </td>
-
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['gender']; ?></td>
-                    <td><?php echo $row['mobile']; ?></td>
-                    <td><?php echo $row['course']; ?></td>
-                    <td><?php echo $row['semester']; ?></td>
-
-                    <td>
-
-                        <?php
-
-                        if ($attendancePercentage >= 75) {
-                            echo "<span class='badge bg-success'>";
-                        } elseif ($attendancePercentage >= 50) {
-                            echo "<span class='badge bg-warning'>";
-                        } else {
-                            echo "<span class='badge bg-danger'>";
-                        }
-
-                        echo $attendancePercentage . "%</span>";
-
-                        ?>
-
-                    </td>
-
-                    <td>
-                        <a href="edit_student.php?id=<?php echo $row['id']; ?>"
-                            class="btn btn-warning btn-sm">
-                            Edit
-                        </a>
-
-                        <a href="delete_student.php?id=<?php echo $row['id']; ?>"
-                            class="btn btn-danger btn-sm"
-                            onclick="return confirm('Delete Student?')">
-                            Delete
-                        </a>
-                    </td>
+                    <th>Photo</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Attendance</th>
+                    <th>Action</th>
 
                 </tr>
-            <?php
-            }
-            ?>
 
-        </table>
+                <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $totalAttendance = mysqli_num_rows(
+                        mysqli_query(
+                            $conn,
+                            "SELECT * FROM attendance
+         WHERE student_id='" . $row['id'] . "'"
+                        )
+                    );
+
+                    $totalPresent = mysqli_num_rows(
+                        mysqli_query(
+                            $conn,
+                            "SELECT * FROM attendance
+         WHERE student_id='" . $row['id'] . "'
+         AND status='Present'"
+                        )
+                    );
+
+                    $attendancePercentage = 0;
+
+                    if ($totalAttendance > 0) {
+                        $attendancePercentage =
+                            round(
+                                ($totalPresent / $totalAttendance) * 100,
+                                2
+                            );
+                    }
+
+                    $photoPath = "/uploads/default-user.png";
+
+                    if (
+                        !empty($row['photo']) &&
+                        file_exists(__DIR__ . "/../uploads/" . $row['photo'])
+                    ) {
+                        $photoPath = "/uploads/" . $row['photo'];
+                    }
+                ?>
+                    <tr>
+
+                        <td>
+                            <img src="<?php echo $photoPath; ?>"
+                                width="60"
+                                height="60"
+                                class="rounded-circle"
+                                style="object-fit:cover;">
+                        </td>
+
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['gender']; ?></td>
+                        <td><?php echo $row['mobile']; ?></td>
+                        <td><?php echo $row['course']; ?></td>
+                        <td><?php echo $row['semester']; ?></td>
+
+                        <td>
+
+                            <?php
+
+                            if ($attendancePercentage >= 75) {
+                                echo "<span class='badge bg-success'>";
+                            } elseif ($attendancePercentage >= 50) {
+                                echo "<span class='badge bg-warning'>";
+                            } else {
+                                echo "<span class='badge bg-danger'>";
+                            }
+
+                            echo $attendancePercentage . "%</span>";
+
+                            ?>
+
+                        </td>
+
+                        <td>
+                            <a href="edit_student.php?id=<?php echo $row['id']; ?>"
+                                class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="delete_student.php?id=<?php echo $row['id']; ?>"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Delete Student?')">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+                <?php
+                }
+                ?>
+
+            </table>
+
+        </div>
 
     </div>
+    <script>
+        function liveSearch() {
+
+            let search =
+                document.getElementById("search").value;
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    document.getElementById("studentTable").innerHTML =
+                        xhr.responseText;
+                }
+            }
+            xhr.open(
+                "GET",
+                "search_student.php?search=" + search,
+                true
+            );
+            xhr.send();
+        }
+    </script>
 
 </body>
 
