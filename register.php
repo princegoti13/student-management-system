@@ -213,9 +213,9 @@ if (isset($_POST['register'])) {
 
                                 <button type="button"
                                     class="btn btn-outline-secondary"
-                                    onclick="togglePassword()">
+                                    onclick="togglePassword('password','eye1')">
 
-                                    👁
+                                    <i id="eye1" class="bi bi-eye"></i>
 
                                 </button>
 
