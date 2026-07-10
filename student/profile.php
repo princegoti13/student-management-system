@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     class="profile-photo">
 
                 <label for="photo" class="camera-btn">
-                    📷
+                    <img src="uploads/camera.png" alt="Upload" class="camera-icon">
                 </label>
 
                 <input
