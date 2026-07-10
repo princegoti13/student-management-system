@@ -152,15 +152,30 @@ if (isset($_POST['login'])) {
     ?>
 
     <script>
-        function togglePassword() {
-            var password =
-                document.getElementById("password");
+        function togglePassword(inputId, eyeId) {
+
+            const password =
+                document.getElementById(inputId);
+
+            const eye =
+                document.getElementById(eyeId);
 
             if (password.type === "password") {
+
                 password.type = "text";
+
+                eye.classList.remove("bi-eye");
+                eye.classList.add("bi-eye-slash");
+
             } else {
+
                 password.type = "password";
+
+                eye.classList.remove("bi-eye-slash");
+                eye.classList.add("bi-eye");
+
             }
+
         }
     </script>
 
