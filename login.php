@@ -48,6 +48,25 @@ if (isset($_POST['login'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        .form-link {
+
+            text-decoration: none;
+            color: #0d6efd;
+            font-weight: 600;
+            transition: .3s;
+
+        }
+
+        .form-link:hover {
+
+            color: #084298;
+            text-decoration: underline;
+
+        }
+    </style>
+
 </head>
 
 <body>
@@ -106,7 +125,7 @@ if (isset($_POST['login'])) {
                         </div>
 
                         <div class="text-end mt-2">
-                            <a href="forgot_password.php">
+                            <a href="forgot_password.php" class="form-link">
                                 Forgot Password?
                             </a>
                         </div>
