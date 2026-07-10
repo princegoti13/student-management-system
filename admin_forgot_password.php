@@ -91,7 +91,7 @@ if (isset($_POST['verify'])) {
 
                             <a href="admin_login.php"
                                 class="btn btn-secondary w-100 mt-2">
-                                Back To Login
+                                Back To Admin Login
                             </a>
 
                         </form>
