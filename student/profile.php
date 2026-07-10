@@ -110,7 +110,7 @@ $user = mysqli_fetch_assoc($query);
         }
         ?>
 
-        <div class="mb-4">
+        <!-- <div class="mb-4"> -->
 
             <div class="profile-image">
 
@@ -129,7 +129,7 @@ $user = mysqli_fetch_assoc($query);
 
             </div>
 
-        </div>
+        <!-- </div> -->
 
         <p>
             Welcome,
