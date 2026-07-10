@@ -53,19 +53,17 @@ if (isset($_POST['check'])) {
 
                 <div class="card shadow">
 
-                    <div class="card-header bg-danger text-white text-center">
-
-                        <h3>Admin Forgot Password</h3>
-
-                    </div>
-
                     <div class="card-body">
+
+                        <h3 class="text-center mb-4">
+                            Forgot Admin Password
+                        </h3>
 
                         <?php
                         if ($message != "") {
                         ?>
 
-                            <div class="alert alert-danger">
+                            <div class="alert alert-<?php echo $messageType; ?>">
                                 <?php echo $message; ?>
                             </div>
 
@@ -77,33 +75,26 @@ if (isset($_POST['check'])) {
 
                             <div class="mb-3">
 
-                                <label>Email Address</label>
+                                <label>Email</label>
 
-                                <input
-                                    type="email"
+                                <input type="email"
                                     name="email"
                                     class="form-control"
                                     required>
 
                             </div>
 
-                            <input
-                                type="submit"
-                                name="check"
-                                value="Next"
-                                class="btn btn-danger w-100">
+                            <input type="submit"
+                                name="verify"
+                                value="Verify"
+                                class="btn btn-primary w-100">
 
-                        </form>
-
-                        <div class="text-center mt-3">
-
-                            <a href="../admin_login.php">
-
+                            <a href="admin_login.php"
+                                class="btn btn-secondary w-100 mt-2">
                                 Back To Login
-
                             </a>
 
-                        </div>
+                        </form>
 
                     </div>
 
