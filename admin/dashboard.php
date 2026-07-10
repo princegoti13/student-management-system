@@ -164,11 +164,11 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
         <form method="GET" class="mb-3">
 
             <input type="text"
+                id="search"
                 name="search"
                 class="form-control"
                 placeholder="Search By Name Or Email"
-                onkeyup="liveSearch()
-                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                onkeyup="liveSearch()">
 
             <!-- <input type="text"
                 id="search"
@@ -297,8 +297,7 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
     <script>
         function liveSearch() {
 
-            let search =
-                document.getElementById("search").value;
+            let search = document.getElementById("search").value;
 
             let xhr = new XMLHttpRequest();
 
@@ -308,14 +307,19 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
 
                     document.getElementById("studentTable").innerHTML =
                         xhr.responseText;
+
                 }
-            }
+
+            };
+
             xhr.open(
                 "GET",
-                "search_student.php?search=" + search,
+                "search_student.php?search=" + encodeURIComponent(search),
                 true
             );
+
             xhr.send();
+
         }
     </script>
 
