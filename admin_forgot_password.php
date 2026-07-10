@@ -4,7 +4,7 @@ require_once 'db.php';
 
 $message = "";
 
-if (isset($_POST['check'])) {
+if (isset($_POST['verify'])) {
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
 
