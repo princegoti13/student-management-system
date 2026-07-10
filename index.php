@@ -1,209 +1,126 @@
-<?php
-include 'db.php';
-
-$message = "";
-$messageType = "";
-
-if(isset($_POST['save']))
-{
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-
-    if(
-        !filter_var($email, FILTER_VALIDATE_EMAIL)
-        ||
-        !preg_match('/\.[a-zA-Z]{2,}$/', $email)
-    )
-    {
-        $message = "Invalid Email Address!";
-        $messageType = "danger";
-    }
-    else
-    {
-        $check = mysqli_query(
-            $conn,
-            "SELECT * FROM students WHERE email='$email'"
-        );
-
-        if(mysqli_num_rows($check) > 0)
-        {
-            $message = "Email Already Exists!";
-            $messageType = "danger";
-        }
-        else
-        {
-            $sql = "INSERT INTO students(name,email)
-                    VALUES('$name','$email')";
-
-            if(mysqli_query($conn,$sql))
-            {
-                $message = "Student Added Successfully!";
-                $messageType = "success";
-            }
-            else
-            {
-                $message = "Error : " . mysqli_error($conn);
-                $messageType = "danger";
-            }
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Student Management System</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/index.css">
+
 </head>
 
 <body>
 
-<div class="container mt-5">
+    <div class="container">
 
-<h1 class="text-center mb-4">
-    Student Management System - AWS CI/CD Working 🚀
-</h1>
+        <div class="hero">
 
-<h1 class="text-center mb-4">
-    Student Management System
-</h1>
+            <h1>🎓 Student Management System</h1>
 
-<?php if($message != "") { ?>
+            <p>
+                A Simple Web Based Student Management System
+                Developed Using PHP, MySQL, Bootstrap,
+                JavaScript, Docker And AWS EC2.
+            </p>
 
-<div id="msgBox" class="alert alert-<?php echo $messageType; ?>">
-    <?php echo $message; ?>
-</div>
+            <div class="mt-4">
 
-<?php } ?>
+                <a href="login.php"
+                    class="btn btn-primary btn-lg me-2">
 
-<div class="card p-4 mb-4">
+                    Student Login
 
-<form method="post">
+                </a>
 
-<div class="mb-3">
-<label class="form-label">Name</label>
+                <a href="register.php"
+                    class="btn btn-success btn-lg me-2">
 
-<input type="text"
-       name="name"
-       class="form-control"
-       required>
-</div>
+                    Student Register
 
-<div class="mb-3">
-<label class="form-label">Email</label>
+                </a>
 
-<input type="email"
-       name="email"
-       class="form-control"
-       required>
-</div>
+                <a href="admin_login.php"
+                    class="btn btn-danger btn-lg">
 
-<input type="submit"
-       name="save"
-       value="Add Student"
-       class="btn btn-primary">
+                    Admin Login
 
-</form>
+                </a>
 
-</div>
+            </div>
 
-<h2>Student List</h2>
+            <hr class="my-5">
 
-<form method="GET" class="mb-3">
+            <div class="row text-start">
 
-<input type="text"
-       name="search"
-       class="form-control"
-       placeholder="Search Student By Name Or Email"
-       value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <div class="col-md-6">
 
-</form>
+                    <h3>📖 About Project</h3>
 
-<?php
+                    <p>
 
-if(isset($_GET['search']) && $_GET['search'] != "")
-{
-    $search = $_GET['search'];
+                        This Student Management System helps
+                        colleges manage student records,
+                        attendance, profiles and academic
+                        information through a simple and
+                        user-friendly web interface.
 
-    $result = mysqli_query(
-        $conn,
-        "SELECT * FROM students
-         WHERE name LIKE '%$search%'
-         OR email LIKE '%$search%'"
-    );
-}
-else
-{
-    $result = mysqli_query(
-        $conn,
-        "SELECT * FROM students"
-    );
-}
+                    </p>
 
-echo "<p><strong>Total Rows:</strong> "
-     . mysqli_num_rows($result)
-     . "</p>";
+                </div>
 
-?>
+                <div class="col-md-6">
 
-<table class="table table-bordered table-striped">
+                    <h3>✨ Features</h3>
 
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Action</th>
-</tr>
+                    <ul>
 
-<?php
+                        <li>Student Registration</li>
 
-while($row = mysqli_fetch_assoc($result))
-{
-    echo "<tr>";
+                        <li>Student Login</li>
 
-    echo "<td>".$row['id']."</td>";
-    echo "<td>".$row['name']."</td>";
-    echo "<td>".$row['email']."</td>";
+                        <li>Admin Login</li>
 
-    echo "<td>
+                        <li>Student Profile</li>
 
-    <a href='edit.php?id=".$row['id']."'
-       class='btn btn-warning btn-sm'>
-       Edit
-    </a>
+                        <li>Attendance Management</li>
 
-    <a href='delete.php?id=".$row['id']."'
-       class='btn btn-danger btn-sm'>
-       Delete
-    </a>
+                        <li>Attendance History</li>
 
-    </td>";
+                        <li>Forgot Password</li>
 
-    echo "</tr>";
-}
+                        <li>Reset Password</li>
 
-?>
+                        <li>Profile Photo Upload</li>
 
-</table>
+                        <li>AWS EC2 Deployment</li>
 
-</div>
+                    </ul>
 
-<script>
+                </div>
 
-setTimeout(function()
-{
-    let msg = document.getElementById("msgBox");
+            </div>
 
-    if(msg)
-    {
-        msg.remove();
-    }
+            <hr>
 
-},1500);
+            <p class="footer">
 
-</script>
+                © 2026 Student Management System |
+                Developed By Prince Goti
+
+            </p>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
