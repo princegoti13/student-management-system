@@ -50,105 +50,105 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        .profile-section {
+       .profile-section{
 
-            display: flex;
+    display:flex;
 
-            align-items: center;
+    align-items:center;
 
-            gap: 25px;
+    gap:25px;
 
-            margin-bottom: 25px;
+    margin-bottom:25px;
 
-        }
+}
 
-        .profile-image {
+.profile-image{
 
-            position: relative;
+    position:relative;
 
-            width: 150px;
+    width:150px;
 
-            height: 150px;
+    height:150px;
 
-            flex-shrink: 0;
+    flex-shrink:0;
 
-        }
+}
 
-        .profile-photo {
+.profile-photo{
 
-            width: 150px;
+    width:150px;
 
-            height: 150px;
+    height:150px;
 
-            border-radius: 50%;
+    border-radius:50%;
 
-            object-fit: cover;
+    object-fit:cover;
 
-            border: 4px solid #0d6efd;
+    border:4px solid #0d6efd;
 
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
 
-        }
+}
 
-        .camera-btn {
+.camera-btn{
 
-            position: absolute;
+    position:absolute;
 
-            top: 5px;
+    top:5px;
 
-            right: 5px;
+    right:5px;
 
-            width: 34px;
+    width:34px;
 
-            height: 34px;
+    height:34px;
 
-            background: #fff;
+    background:#fff;
 
-            color: #0d6efd;
+    color:#0d6efd;
 
-            border: 2px solid #0d6efd;
+    border:2px solid #0d6efd;
 
-            border-radius: 50%;
+    border-radius:50%;
 
-            display: flex;
+    display:flex;
 
-            justify-content: center;
+    justify-content:center;
 
-            align-items: center;
+    align-items:center;
 
-            cursor: pointer;
+    cursor:pointer;
 
-            transition: .3s;
+    transition:.3s;
 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
 
-        }
+}
 
-        .camera-btn:hover {
+.camera-btn:hover{
 
-            background: #0d6efd;
+    background:#0d6efd;
 
-            color: #fff;
+    color:#fff;
 
-            transform: scale(1.1);
+    transform:scale(1.1);
 
-        }
+}
 
-        .profile-info h5 {
+.profile-info h5{
 
-            margin-bottom: 5px;
+    margin-bottom:5px;
 
-            font-weight: 700;
+    font-weight:700;
 
-        }
+}
 
-        .profile-info p {
+.profile-info p{
 
-            margin: 0;
+    margin:0;
 
-            color: #6c757d;
+    color:#6c757d;
 
-        }
+}
     </style>
 
 </head>
@@ -181,10 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     class="profile-photo">
 
                 <label for="photo" class="camera-btn">
-                    <img src="../uploads/camera.png"
-                        width="40"
-                        height="40"
-                        style="border:2px solid red;">
+                    📷
                 </label>
 
                 <input
