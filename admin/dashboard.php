@@ -163,17 +163,18 @@ if (isset($_GET['search']) && $_GET['search'] != "") {
 
         <form method="GET" class="mb-3">
 
-            <!-- <input type="text"
+            <input type="text"
                 name="search"
                 class="form-control"
                 placeholder="Search By Name Or Email"
-                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>"> -->
+                onkeyup="liveSearch()
+                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
 
-            <input type="text"
+            <!-- <input type="text"
                 id="search"
                 class="form-control"
                 placeholder="Search By Name Or Email"
-                onkeyup="liveSearch()">
+                onkeyup="liveSearch()"> -->
 
         </form>
 
