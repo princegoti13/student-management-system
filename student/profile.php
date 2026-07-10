@@ -16,6 +16,28 @@ $query = mysqli_query(
 );
 
 $user = mysqli_fetch_assoc($query);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (!empty($_FILES["photo"]["name"])) {
+
+        $photoName = time() . "_" . basename($_FILES["photo"]["name"]);
+
+        $target = __DIR__ . "/../uploads/" . $photoName;
+
+        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target)) {
+
+            mysqli_query(
+                $conn,
+                "UPDATE users
+                 SET photo='$photoName'
+                 WHERE id='$id'"
+            );
+
+            header("Location: profile.php");
+            exit();
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +47,7 @@ $user = mysqli_fetch_assoc($query);
     <title>Student Profile</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         .profile-image {
@@ -112,22 +135,27 @@ $user = mysqli_fetch_assoc($query);
 
         <!-- <div class="mb-4"> -->
 
+        <form method="POST" enctype="multipart/form-data">
+
             <div class="profile-image">
 
-                <img src="../uploads/<?php echo $user['photo']; ?>"
+                <img src="<?php echo $photoPath; ?>"
                     class="profile-photo">
 
                 <label for="photo" class="camera-btn">
-                    <i class="bi bi-camera-fill"></i>
+                    📷
                 </label>
 
-                <input type="file"
+                <input
+                    type="file"
                     id="photo"
                     name="photo"
                     hidden
-                    onchange="this.form.submit();">
+                    onchange="this.form.submit()">
 
             </div>
+
+        </form>
 
         <!-- </div> -->
 
