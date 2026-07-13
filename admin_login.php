@@ -132,13 +132,13 @@ if (isset($_POST['login'])) {
                             </div>
 
                         </div>
-                        <div class="text-end mt-3">
+                        <!-- <div class="text-end mt-3">
 
                             <a href="admin_forgot_password.php" class="form-link">
                                 Forgot Password?
                             </a>
 
-                        </div>
+                        </div> -->
 
                         <input type="submit"
                             name="login"
